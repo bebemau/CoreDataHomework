@@ -13,6 +13,12 @@
 		254307D51AAE8E7F00407101 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254307D41AAE8E7F00407101 /* Images.xcassets */; };
 		254307D81AAE8E7F00407101 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254307D61AAE8E7F00407101 /* Main.storyboard */; };
 		254307E41AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307E31AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.m */; };
+		254307F21AAE8F1700407101 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307F11AAE8F1700407101 /* Item.m */; };
+		254307F81AAFF19A00407101 /* CoreDataChangeObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307F71AAFF19A00407101 /* CoreDataChangeObserver.m */; };
+		254307FB1AAFF20000407101 /* SubclassableCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307FA1AAFF20000407101 /* SubclassableCoreDataStack.m */; };
+		254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307FD1AAFF23600407101 /* ConfigurationCreator.m */; };
+		254308011AAFF2DF00407101 /* ConfigurableCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308001AAFF2DF00407101 /* ConfigurableCoreDataStack.m */; };
+		2543083B1AB1253F00407101 /* InventoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +44,17 @@
 		254307DD1AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kerenm_CoreDataHomeworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		254307E21AAE8E7F00407101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		254307E31AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kerenm_CoreDataHomeworkTests.m; sourceTree = "<group>"; };
+		254307F01AAE8F1700407101 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		254307F11AAE8F1700407101 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		254307F61AAFF19A00407101 /* CoreDataChangeObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataChangeObserver.h; sourceTree = "<group>"; };
+		254307F71AAFF19A00407101 /* CoreDataChangeObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataChangeObserver.m; sourceTree = "<group>"; };
+		254307F91AAFF20000407101 /* SubclassableCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubclassableCoreDataStack.h; sourceTree = "<group>"; };
+		254307FA1AAFF20000407101 /* SubclassableCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubclassableCoreDataStack.m; sourceTree = "<group>"; };
+		254307FC1AAFF23600407101 /* ConfigurationCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationCreator.h; sourceTree = "<group>"; };
+		254307FD1AAFF23600407101 /* ConfigurationCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationCreator.m; sourceTree = "<group>"; };
+		254307FF1AAFF2DF00407101 /* ConfigurableCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurableCoreDataStack.h; sourceTree = "<group>"; };
+		254308001AAFF2DF00407101 /* ConfigurableCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurableCoreDataStack.m; sourceTree = "<group>"; };
+		2543083A1AB1253F00407101 /* InventoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InventoryModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +96,16 @@
 		254307C91AAE8E7F00407101 /* kerenm_CoreDataHomework */ = {
 			isa = PBXGroup;
 			children = (
+				254307FF1AAFF2DF00407101 /* ConfigurableCoreDataStack.h */,
+				254308001AAFF2DF00407101 /* ConfigurableCoreDataStack.m */,
+				254307F91AAFF20000407101 /* SubclassableCoreDataStack.h */,
+				254307FA1AAFF20000407101 /* SubclassableCoreDataStack.m */,
+				254307F61AAFF19A00407101 /* CoreDataChangeObserver.h */,
+				254307F71AAFF19A00407101 /* CoreDataChangeObserver.m */,
+				254307FC1AAFF23600407101 /* ConfigurationCreator.h */,
+				254307FD1AAFF23600407101 /* ConfigurationCreator.m */,
+				254307F01AAE8F1700407101 /* Item.h */,
+				254307F11AAE8F1700407101 /* Item.m */,
 				254307CC1AAE8E7F00407101 /* AppDelegate.h */,
 				254307CD1AAE8E7F00407101 /* AppDelegate.m */,
 				254307D11AAE8E7F00407101 /* ViewController.h */,
@@ -86,6 +113,7 @@
 				254307D41AAE8E7F00407101 /* Images.xcassets */,
 				254307D61AAE8E7F00407101 /* Main.storyboard */,
 				254307CA1AAE8E7F00407101 /* Supporting Files */,
+				254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */,
 			);
 			path = kerenm_CoreDataHomework;
 			sourceTree = "<group>";
@@ -215,7 +243,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254308011AAFF2DF00407101 /* ConfigurableCoreDataStack.m in Sources */,
+				254307FB1AAFF20000407101 /* SubclassableCoreDataStack.m in Sources */,
+				254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */,
+				254307F21AAE8F1700407101 /* Item.m in Sources */,
+				254307F81AAFF19A00407101 /* CoreDataChangeObserver.m in Sources */,
 				254307D31AAE8E7F00407101 /* ViewController.m in Sources */,
+				2543083B1AB1253F00407101 /* InventoryModel.xcdatamodeld in Sources */,
 				254307D01AAE8E7F00407101 /* main.m in Sources */,
 				254307CE1AAE8E7F00407101 /* AppDelegate.m in Sources */,
 			);
@@ -404,6 +438,7 @@
 				254307E91AAE8E7F00407101 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		254307EA1AAE8E7F00407101 /* Build configuration list for PBXNativeTarget "kerenm_CoreDataHomeworkTests" */ = {
 			isa = XCConfigurationList;
@@ -412,8 +447,22 @@
 				254307EC1AAE8E7F00407101 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2543083A1AB1253F00407101 /* InventoryModel.xcdatamodel */,
+			);
+			currentVersion = 2543083A1AB1253F00407101 /* InventoryModel.xcdatamodel */;
+			path = InventoryModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 254307BF1AAE8E7F00407101 /* Project object */;
 }
