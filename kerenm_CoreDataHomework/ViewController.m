@@ -16,7 +16,8 @@
     [super viewDidLoad];
 
     _coreDataStackConfig = [CoreDataStackConfiguration new];
-    _coreDataStackConfig.storeType = NSSQLiteStoreType;
+    //_coreDataStackConfig.storeType = NSSQLiteStoreType;
+    _coreDataStackConfig.storeType = NSInMemoryStoreType;
     _coreDataStackConfig.modelName = @"InventoryModel";
     _coreDataStackConfig.appIdentifier = @"com.kerenman.inventory";
     _coreDataStackConfig.dataFileNameWithExtension = @"store.sqllite.coredataHomework";
@@ -37,6 +38,11 @@
 - (IBAction)btnAdd_Clicked:(id)sender {
     Item *item = [Item createInMoc: _moc];
     item.title  = self.txtItemDescription.stringValue;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    NSDate *datePosted = [dateFormatter dateFromString:self.txtDatePosted.stringValue];
+    item.datePosted  = datePosted;
     NSError *saveError = nil;
     BOOL success = [_moc save:&saveError];
     if(!success){
@@ -57,14 +63,24 @@
 
 -(NSView*)tableView:(NSTableView*)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
-    NSTableCellView *cell = [tableView makeViewWithIdentifier:@"tableCellID" owner:nil];
-    cell.textField.stringValue=@(rowIndex).stringValue;
-    //NSLog(@"rowindex %ld", (long)rowIndex);
-    NSLog(@"rowindex at viewForTableColumn %ld", (NSUInteger)rowIndex);
-
     Item *i = [_allItems objectAtIndex:rowIndex];
-    NSString *itemTitle = i.title;
-    cell.textField.stringValue = itemTitle;
+    NSTableCellView *cell = nil;
+    
+    if([[tableColumn identifier] isEqualToString:@"titleColumn"]){
+        cell = [tableView makeViewWithIdentifier:@"tableCellTitle" owner:nil];
+        cell.textField.stringValue=@(rowIndex).stringValue;
+        NSString *itemTitle = i.title;
+        cell.textField.stringValue = itemTitle;
+    }
+    else if ([[tableColumn identifier] isEqualToString:@"datePostedColumn"]){
+        cell = [tableView makeViewWithIdentifier:@"tableCellDatePosted" owner:nil];
+        cell.textField.stringValue=@(rowIndex).stringValue;
+        NSString *dateString = [NSDateFormatter localizedStringFromDate: i.datePosted
+                                                              dateStyle:NSDateFormatterShortStyle
+                                                              timeStyle:NSDateFormatterFullStyle];
+        cell.textField.stringValue = dateString;
+    }
+
     return cell;
 }
 
