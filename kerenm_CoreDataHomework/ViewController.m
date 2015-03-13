@@ -10,6 +10,17 @@
 #import "ConfigurableCoreDataStack.h"
 #import "Item.h"
 
+@interface ViewController ()
+@property (weak) IBOutlet NSTextField *txtItemDescription;
+@property (weak) IBOutlet NSButton *btnAdd;
+@property CoreDataStackConfiguration *coreDataStackConfig;
+@property ConfigurableCoreDataStack *stack;
+@property NSManagedObjectContext *moc;
+@property (weak) IBOutlet NSTableView *tblItems;
+@property NSArray *allItems;
+@property (weak) IBOutlet NSTextField *txtDatePosted;
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad {

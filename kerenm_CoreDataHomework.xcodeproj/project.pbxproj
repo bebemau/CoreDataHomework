@@ -19,6 +19,9 @@
 		254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307FD1AAFF23600407101 /* ConfigurationCreator.m */; };
 		254308011AAFF2DF00407101 /* ConfigurableCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308001AAFF2DF00407101 /* ConfigurableCoreDataStack.m */; };
 		2543083B1AB1253F00407101 /* InventoryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */; };
+		254308471AB2773C00407101 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308461AB2773C00407101 /* Location.m */; };
+		2543084A1AB2779E00407101 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308491AB2779E00407101 /* Tag.m */; };
+		2543084D1AB277C400407101 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543084C1AB277C400407101 /* Image.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,12 @@
 		254307FF1AAFF2DF00407101 /* ConfigurableCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurableCoreDataStack.h; sourceTree = "<group>"; };
 		254308001AAFF2DF00407101 /* ConfigurableCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurableCoreDataStack.m; sourceTree = "<group>"; };
 		2543083A1AB1253F00407101 /* InventoryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InventoryModel.xcdatamodel; sourceTree = "<group>"; };
+		254308451AB2773C00407101 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		254308461AB2773C00407101 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		254308481AB2779E00407101 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		254308491AB2779E00407101 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		2543084B1AB277C400407101 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		2543084C1AB277C400407101 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +123,12 @@
 				254307D61AAE8E7F00407101 /* Main.storyboard */,
 				254307CA1AAE8E7F00407101 /* Supporting Files */,
 				254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */,
+				2543084B1AB277C400407101 /* Image.h */,
+				2543084C1AB277C400407101 /* Image.m */,
+				254308481AB2779E00407101 /* Tag.h */,
+				254308491AB2779E00407101 /* Tag.m */,
+				254308451AB2773C00407101 /* Location.h */,
+				254308461AB2773C00407101 /* Location.m */,
 			);
 			path = kerenm_CoreDataHomework;
 			sourceTree = "<group>";
@@ -243,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2543084A1AB2779E00407101 /* Tag.m in Sources */,
 				254308011AAFF2DF00407101 /* ConfigurableCoreDataStack.m in Sources */,
 				254307FB1AAFF20000407101 /* SubclassableCoreDataStack.m in Sources */,
 				254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */,
@@ -251,6 +267,8 @@
 				254307D31AAE8E7F00407101 /* ViewController.m in Sources */,
 				2543083B1AB1253F00407101 /* InventoryModel.xcdatamodeld in Sources */,
 				254307D01AAE8E7F00407101 /* main.m in Sources */,
+				2543084D1AB277C400407101 /* Image.m in Sources */,
+				254308471AB2773C00407101 /* Location.m in Sources */,
 				254307CE1AAE8E7F00407101 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

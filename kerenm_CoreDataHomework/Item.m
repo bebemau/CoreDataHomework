@@ -12,6 +12,10 @@
 @implementation Item
 
 @dynamic title;
+@dynamic datePosted;
+@dynamic images;
+@dynamic location;
+@dynamic tags;
 
 +(instancetype)createInMoc:(NSManagedObjectContext*)moc{
     Item *ii = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:moc];

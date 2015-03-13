@@ -14,13 +14,13 @@ NSTableViewDataSource,
 NSTableViewDelegate
 >
 
-@property (weak) IBOutlet NSTextField *txtItemDescription;
-@property (weak) IBOutlet NSButton *btnAdd;
-@property CoreDataStackConfiguration *coreDataStackConfig;
-@property ConfigurableCoreDataStack *stack;
-@property NSManagedObjectContext *moc;
-@property (weak) IBOutlet NSTableView *tblItems;
-@property NSArray *allItems;
-@property (weak) IBOutlet NSTextField *txtDatePosted;
+//@property (weak) IBOutlet NSTextField *txtItemDescription;
+//@property (weak) IBOutlet NSButton *btnAdd;
+//@property CoreDataStackConfiguration *coreDataStackConfig;
+//@property ConfigurableCoreDataStack *stack;
+//@property NSManagedObjectContext *moc;
+//@property (weak) IBOutlet NSTableView *tblItems;
+//@property NSArray *allItems;
+//@property (weak) IBOutlet NSTextField *txtDatePosted;
 @end
 
