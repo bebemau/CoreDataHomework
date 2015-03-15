@@ -22,6 +22,8 @@
 		254308471AB2773C00407101 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308461AB2773C00407101 /* Location.m */; };
 		2543084A1AB2779E00407101 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308491AB2779E00407101 /* Tag.m */; };
 		2543084D1AB277C400407101 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543084C1AB277C400407101 /* Image.m */; };
+		254308501AB2809E00407101 /* BlueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543084F1AB2809E00407101 /* BlueViewController.m */; };
+		254308581AB5465900407101 /* ItemDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308571AB5465900407101 /* ItemDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		254308491AB2779E00407101 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		2543084B1AB277C400407101 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		2543084C1AB277C400407101 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
+		2543084E1AB2809E00407101 /* BlueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueViewController.h; sourceTree = "<group>"; };
+		2543084F1AB2809E00407101 /* BlueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueViewController.m; sourceTree = "<group>"; };
+		254308561AB5465900407101 /* ItemDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailController.h; sourceTree = "<group>"; };
+		254308571AB5465900407101 /* ItemDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,30 +111,14 @@
 		254307C91AAE8E7F00407101 /* kerenm_CoreDataHomework */ = {
 			isa = PBXGroup;
 			children = (
-				254307FF1AAFF2DF00407101 /* ConfigurableCoreDataStack.h */,
-				254308001AAFF2DF00407101 /* ConfigurableCoreDataStack.m */,
-				254307F91AAFF20000407101 /* SubclassableCoreDataStack.h */,
-				254307FA1AAFF20000407101 /* SubclassableCoreDataStack.m */,
-				254307F61AAFF19A00407101 /* CoreDataChangeObserver.h */,
-				254307F71AAFF19A00407101 /* CoreDataChangeObserver.m */,
-				254307FC1AAFF23600407101 /* ConfigurationCreator.h */,
-				254307FD1AAFF23600407101 /* ConfigurationCreator.m */,
-				254307F01AAE8F1700407101 /* Item.h */,
-				254307F11AAE8F1700407101 /* Item.m */,
+				254308591AB55B5F00407101 /* CoreData */,
+				2543085A1AB55B7800407101 /* Model */,
 				254307CC1AAE8E7F00407101 /* AppDelegate.h */,
 				254307CD1AAE8E7F00407101 /* AppDelegate.m */,
-				254307D11AAE8E7F00407101 /* ViewController.h */,
-				254307D21AAE8E7F00407101 /* ViewController.m */,
+				2543085B1AB55B8D00407101 /* ViewController */,
 				254307D41AAE8E7F00407101 /* Images.xcassets */,
 				254307D61AAE8E7F00407101 /* Main.storyboard */,
 				254307CA1AAE8E7F00407101 /* Supporting Files */,
-				254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */,
-				2543084B1AB277C400407101 /* Image.h */,
-				2543084C1AB277C400407101 /* Image.m */,
-				254308481AB2779E00407101 /* Tag.h */,
-				254308491AB2779E00407101 /* Tag.m */,
-				254308451AB2773C00407101 /* Location.h */,
-				254308461AB2773C00407101 /* Location.m */,
 			);
 			path = kerenm_CoreDataHomework;
 			sourceTree = "<group>";
@@ -157,6 +147,50 @@
 				254307E21AAE8E7F00407101 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		254308591AB55B5F00407101 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				254307FF1AAFF2DF00407101 /* ConfigurableCoreDataStack.h */,
+				254308001AAFF2DF00407101 /* ConfigurableCoreDataStack.m */,
+				254307F91AAFF20000407101 /* SubclassableCoreDataStack.h */,
+				254307FA1AAFF20000407101 /* SubclassableCoreDataStack.m */,
+				254307F61AAFF19A00407101 /* CoreDataChangeObserver.h */,
+				254307F71AAFF19A00407101 /* CoreDataChangeObserver.m */,
+				254307FC1AAFF23600407101 /* ConfigurationCreator.h */,
+				254307FD1AAFF23600407101 /* ConfigurationCreator.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		2543085A1AB55B7800407101 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */,
+				254307F01AAE8F1700407101 /* Item.h */,
+				254307F11AAE8F1700407101 /* Item.m */,
+				2543084B1AB277C400407101 /* Image.h */,
+				2543084C1AB277C400407101 /* Image.m */,
+				254308481AB2779E00407101 /* Tag.h */,
+				254308491AB2779E00407101 /* Tag.m */,
+				254308451AB2773C00407101 /* Location.h */,
+				254308461AB2773C00407101 /* Location.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2543085B1AB55B8D00407101 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				254307D11AAE8E7F00407101 /* ViewController.h */,
+				254307D21AAE8E7F00407101 /* ViewController.m */,
+				2543084E1AB2809E00407101 /* BlueViewController.h */,
+				2543084F1AB2809E00407101 /* BlueViewController.m */,
+				254308561AB5465900407101 /* ItemDetailController.h */,
+				254308571AB5465900407101 /* ItemDetailController.m */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,12 +292,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254308501AB2809E00407101 /* BlueViewController.m in Sources */,
 				2543084A1AB2779E00407101 /* Tag.m in Sources */,
 				254308011AAFF2DF00407101 /* ConfigurableCoreDataStack.m in Sources */,
 				254307FB1AAFF20000407101 /* SubclassableCoreDataStack.m in Sources */,
 				254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */,
 				254307F21AAE8F1700407101 /* Item.m in Sources */,
 				254307F81AAFF19A00407101 /* CoreDataChangeObserver.m in Sources */,
+				254308581AB5465900407101 /* ItemDetailController.m in Sources */,
 				254307D31AAE8E7F00407101 /* ViewController.m in Sources */,
 				2543083B1AB1253F00407101 /* InventoryModel.xcdatamodeld in Sources */,
 				254307D01AAE8E7F00407101 /* main.m in Sources */,

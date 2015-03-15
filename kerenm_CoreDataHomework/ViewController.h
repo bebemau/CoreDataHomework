@@ -21,6 +21,5 @@ NSTableViewDelegate
 //@property NSManagedObjectContext *moc;
 //@property (weak) IBOutlet NSTableView *tblItems;
 //@property NSArray *allItems;
-//@property (weak) IBOutlet NSTextField *txtDatePosted;
 @end
 
