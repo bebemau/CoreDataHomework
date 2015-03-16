@@ -21,6 +21,7 @@
 @property NSManagedObjectContext *moc;
 @property (weak) IBOutlet NSTableView *tblItems;
 @property NSArray *allItems;
+@property NSURL *imageDirectory;
 @end
 
 @implementation ViewController
@@ -51,6 +52,22 @@
 //    NSButton *myCheckBox = [[NSButton alloc] initWithFrame:frame];
 //    [myCheckBox setButtonType:NSSwitchButton];
 //    [self addSubview:myCheckBox];
+    
+    //setup image directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [paths objectAtIndex:0];
+    NSURL *applicationUrl = [NSURL fileURLWithPath: applicationSupportDirectory isDirectory: YES];
+    NSString *imagePath = [NSString stringWithFormat:@"%@/%@", _coreDataStackConfig.appIdentifier, @"images"];
+    _imageDirectory = [applicationUrl URLByAppendingPathComponent:imagePath];
+    
+    NSError * error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:[_imageDirectory path]
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+    if (error != nil) {
+        NSLog(@"error creating image directory: %@", error);
+    }
 }
 
 - (void)tblItems_DoubleClick:(id)object {
@@ -114,6 +131,8 @@
 
 - (IBAction)browse_Clicked:(id)sender {
     NSOpenPanel *op = [NSOpenPanel openPanel];
+    NSArray* fileTypes = [[NSArray alloc] initWithObjects:@"png", @"jpg", nil];
+    [op setAllowedFileTypes:fileTypes];
     op.directoryURL = [NSURL fileURLWithPath:@"~/Desktop".stringByExpandingTildeInPath];
     
     //    [op beginSheet:self.view.window  completionHandler:^(NSModalResponse returnCode) {
@@ -124,12 +143,17 @@
     [op beginWithCompletionHandler:^(NSInteger result) {
         //execute after user makes choice
         NSLog(@"User finished choosing");
-        
         NSLog(@"user got: %@", op.URLs);
         
+        //foreach(NSURL)
         NSError *err = nil;
-        NSURL *myURL = nil; //somewhere we decide where
-        //[NSFileManager defaultManager] copyItemAtURL:op.URL toURL:([myURL error: &err];
+        NSString *fileName = [op.URL lastPathComponent];
+        //NSString *imagePath = [NSString stringWithFormat:@"%@/%@", _imageDirectory, fileName ];
+        NSURL *destinationPath =  [_imageDirectory URLByAppendingPathComponent: fileName];
+        //_imageDirectory = [applicationUrl URLByAppendingPathComponent:imagePath];
+        [[NSFileManager defaultManager] copyItemAtURL:op.URL
+                                        toURL:destinationPath
+                                        error: &err];
     }];
 
 }
