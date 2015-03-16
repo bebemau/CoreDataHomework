@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSSet * images;
 @property (nonatomic, retain) NSSet * tags;
 @property (nonatomic, retain) Location * location;
+@property (nonatomic, retain) NSString * uuid;
 
 +(instancetype)createInMoc:(NSManagedObjectContext*)moc;
 

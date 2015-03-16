@@ -7,6 +7,7 @@
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="datePosted" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="itemToImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="imageToItem" inverseEntity="Image" syncable="YES"/>
         <relationship name="itemToLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="locationToItem" inverseEntity="Location" syncable="YES"/>
         <relationship name="itemToTag" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="tagToItem" inverseEntity="Tag" syncable="YES"/>
@@ -22,7 +23,7 @@
         <relationship name="tagToItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="itemToTag" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-171" positionY="0" width="128" height="118"/>
+        <element name="Item" positionX="-171" positionY="0" width="128" height="133"/>
         <element name="Tag" positionX="-351" positionY="152" width="128" height="73"/>
         <element name="Location" positionX="18" positionY="81" width="128" height="103"/>
         <element name="Image" positionX="-153" positionY="251" width="128" height="73"/>

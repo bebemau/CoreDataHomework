@@ -11,7 +11,6 @@
 #import "Item.h"
 
 @interface ViewController ()
-@property (weak) IBOutlet NSTextField *txtImage;
 @property (weak) IBOutlet NSTextField *txtLocation;
 @property (weak) IBOutlet NSTextField *txtTag;
 @property (weak) IBOutlet NSTextField *txtItemDescription;
@@ -20,6 +19,9 @@
 @property ConfigurableCoreDataStack *stack;
 @property NSManagedObjectContext *moc;
 @property (weak) IBOutlet NSTableView *tblItems;
+@property (weak) IBOutlet NSTextField *txtImage1;
+@property (weak) IBOutlet NSTextField *txtImage2;
+@property (weak) IBOutlet NSTextField *txtImage3;
 @property NSArray *allItems;
 @property NSURL *imageDirectory;
 @end
@@ -118,39 +120,30 @@
     return [self.allItems count];
 }
 
-//- (IBAction)clickShow:(id)sender {
-//    NSLog(@"%s", __PRETTY_FUNCTION__);
-//    NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-//    NSViewController *vc = [sb instantiateControllerWithIdentifier:@"blueVc"];
-////    [self presentViewControllerAsSheet:vc];
-////    [self dismissController:vc];
-//    //[self presentViewControllerAsModalWindow:vc];
-//    NSButton *button = sender;
-//    [self presentViewController:vc asPopoverRelativeToRect:button.bounds ofView:button preferredEdge:NSMaxYEdge behavior:NSPopoverBehaviorTransient];
-//}
-
 - (IBAction)browse_Clicked:(id)sender {
     NSOpenPanel *op = [NSOpenPanel openPanel];
     NSArray* fileTypes = [[NSArray alloc] initWithObjects:@"png", @"jpg", nil];
     [op setAllowedFileTypes:fileTypes];
     op.directoryURL = [NSURL fileURLWithPath:@"~/Desktop".stringByExpandingTildeInPath];
     
-    //    [op beginSheet:self.view.window  completionHandler:^(NSModalResponse returnCode) {
-    //        //execute after user makes choice
-    //        NSLog(@"Uer finished choosing");
-    //    }];
-    
     [op beginWithCompletionHandler:^(NSInteger result) {
         //execute after user makes choice
         NSLog(@"User finished choosing");
         NSLog(@"user got: %@", op.URLs);
-        
+        if([[sender identifier] isEqualToString: @"image1"]){
+            self.txtImage1.stringValue = [op.URL path];
+        }
+        else if([[sender identifier] isEqualToString: @"image2"]){
+            self.txtImage2.stringValue = [op.URL path];
+        }
+        else if([[sender identifier] isEqualToString: @"image3"]){
+            self.txtImage3.stringValue = [op.URL path];
+        }
+            
         //foreach(NSURL)
         NSError *err = nil;
         NSString *fileName = [op.URL lastPathComponent];
-        //NSString *imagePath = [NSString stringWithFormat:@"%@/%@", _imageDirectory, fileName ];
         NSURL *destinationPath =  [_imageDirectory URLByAppendingPathComponent: fileName];
-        //_imageDirectory = [applicationUrl URLByAppendingPathComponent:imagePath];
         [[NSFileManager defaultManager] copyItemAtURL:op.URL
                                         toURL:destinationPath
                                         error: &err];
@@ -161,11 +154,12 @@
 - (IBAction)btnSubmit_clicked:(id)sender {
     Item *item = [Item createInMoc: _moc];
     item.title  = self.txtItemDescription.stringValue;
-    
+    item.uuid = [[NSUUID UUID] UUIDString];
+    item.datePosted  = [NSDate date];
     //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
     //    NSDate *datePosted = [dateFormatter dateFromString:self.txtDatePosted.stringValue];
-    item.datePosted  = [NSDate date];
+
     NSError *saveError = nil;
     BOOL success = [_moc save:&saveError];
     if(!success){
@@ -173,6 +167,10 @@
     }
     
     [self refreshTable];
+}
+
+-(void) saveImage{
+    
 }
 
 @end

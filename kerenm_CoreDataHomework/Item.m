@@ -16,6 +16,7 @@
 @dynamic images;
 @dynamic location;
 @dynamic tags;
+@dynamic uuid;
 
 +(instancetype)createInMoc:(NSManagedObjectContext*)moc{
     Item *ii = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:moc];
