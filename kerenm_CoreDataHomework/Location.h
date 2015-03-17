@@ -18,4 +18,6 @@
 @property (nonatomic, retain) NSString * locationName;
 @property (nonatomic, retain) Item *locationToItem;
 
++(instancetype)createInMoc:(NSManagedObjectContext*)moc;
+
 @end

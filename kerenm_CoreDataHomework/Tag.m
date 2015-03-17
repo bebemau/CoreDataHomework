@@ -15,4 +15,9 @@
 @dynamic tagName;
 @dynamic tagToItem;
 
++(instancetype)createInMoc:(NSManagedObjectContext*)moc{
+    Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:moc];
+    return tag;
+}
+
 @end

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ConfigurableCoreDataStack.h"
 #import "Item.h"
+#import "Image.h"
 
 @interface ViewController ()
 @property (weak) IBOutlet NSTextField *txtLocation;
@@ -139,14 +140,7 @@
         else if([[sender identifier] isEqualToString: @"image3"]){
             self.txtImage3.stringValue = [op.URL path];
         }
-            
-        //foreach(NSURL)
-        NSError *err = nil;
-        NSString *fileName = [op.URL lastPathComponent];
-        NSURL *destinationPath =  [_imageDirectory URLByAppendingPathComponent: fileName];
-        [[NSFileManager defaultManager] copyItemAtURL:op.URL
-                                        toURL:destinationPath
-                                        error: &err];
+        
     }];
 
 }
@@ -159,7 +153,12 @@
     //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
     //    NSDate *datePosted = [dateFormatter dateFromString:self.txtDatePosted.stringValue];
-
+    
+    //save image
+    [self saveImage:self.txtImage1.stringValue parentItem:item imageFileName: [NSString stringWithFormat:@"%@%@", item.uuid, @"_1"]];
+    [self saveImage:self.txtImage2.stringValue parentItem:item imageFileName: [NSString stringWithFormat:@"%@%@", item.uuid, @"_2"]];
+    [self saveImage:self.txtImage3.stringValue parentItem:item imageFileName: [NSString stringWithFormat:@"%@%@", item.uuid, @"_3"]];
+    
     NSError *saveError = nil;
     BOOL success = [_moc save:&saveError];
     if(!success){
@@ -169,8 +168,22 @@
     [self refreshTable];
 }
 
--(void) saveImage{
+- (void) saveImage:(NSString*)sourcePath parentItem:(Item*)item imageFileName:(NSString*)fileName{
+    NSError *err = nil;
+    NSURL *destinationPath = nil;
     
+    if(![sourcePath  isEqual: @""])
+    {
+        //fileName =[sourcePath lastPathComponent];
+        destinationPath =  [_imageDirectory URLByAppendingPathComponent: fileName];
+        [[NSFileManager defaultManager] copyItemAtURL: [NSURL fileURLWithPath:sourcePath isDirectory:NO]
+                                                toURL:destinationPath
+                                                error: &err];
+    }
+    
+    Image *image = [Image createInMoc: _moc];
+    image.imageUrl = [destinationPath path];
+    image.imageToItem  =item;
 }
 
 @end

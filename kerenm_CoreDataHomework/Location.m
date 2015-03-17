@@ -17,4 +17,9 @@
 @dynamic locationName;
 @dynamic locationToItem;
 
++(instancetype)createInMoc:(NSManagedObjectContext*)moc{
+    Location *location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:moc];
+    return location;
+}
+
 @end

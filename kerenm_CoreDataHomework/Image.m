@@ -15,4 +15,9 @@
 @dynamic imageUrl;
 @dynamic imageToItem;
 
++(instancetype)createInMoc:(NSManagedObjectContext*)moc{
+    Image *image = [NSEntityDescription insertNewObjectForEntityForName:@"Image" inManagedObjectContext:moc];
+    return image;
+}
+
 @end

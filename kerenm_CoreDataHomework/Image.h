@@ -16,4 +16,6 @@
 @property (nonatomic, retain) NSString * imageUrl;
 @property (nonatomic, retain) Item *imageToItem;
 
++(instancetype)createInMoc:(NSManagedObjectContext*)moc;
+
 @end
