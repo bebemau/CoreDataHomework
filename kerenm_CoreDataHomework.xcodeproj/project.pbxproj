@@ -22,8 +22,7 @@
 		254308471AB2773C00407101 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308461AB2773C00407101 /* Location.m */; };
 		2543084A1AB2779E00407101 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308491AB2779E00407101 /* Tag.m */; };
 		2543084D1AB277C400407101 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543084C1AB277C400407101 /* Image.m */; };
-		254308501AB2809E00407101 /* BlueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543084F1AB2809E00407101 /* BlueViewController.m */; };
-		254308581AB5465900407101 /* ItemDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308571AB5465900407101 /* ItemDetailController.m */; };
+		254308611AB7F0B000407101 /* EditItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308601AB7F0B000407101 /* EditItemController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,10 +65,8 @@
 		254308491AB2779E00407101 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		2543084B1AB277C400407101 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		2543084C1AB277C400407101 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
-		2543084E1AB2809E00407101 /* BlueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueViewController.h; sourceTree = "<group>"; };
-		2543084F1AB2809E00407101 /* BlueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueViewController.m; sourceTree = "<group>"; };
-		254308561AB5465900407101 /* ItemDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailController.h; sourceTree = "<group>"; };
-		254308571AB5465900407101 /* ItemDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailController.m; sourceTree = "<group>"; };
+		2543085F1AB7F0B000407101 /* EditItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditItemController.h; path = ../EditItemController.h; sourceTree = "<group>"; };
+		254308601AB7F0B000407101 /* EditItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditItemController.m; path = ../EditItemController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,12 +180,10 @@
 		2543085B1AB55B8D00407101 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2543085F1AB7F0B000407101 /* EditItemController.h */,
+				254308601AB7F0B000407101 /* EditItemController.m */,
 				254307D11AAE8E7F00407101 /* ViewController.h */,
 				254307D21AAE8E7F00407101 /* ViewController.m */,
-				2543084E1AB2809E00407101 /* BlueViewController.h */,
-				2543084F1AB2809E00407101 /* BlueViewController.m */,
-				254308561AB5465900407101 /* ItemDetailController.h */,
-				254308571AB5465900407101 /* ItemDetailController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -292,14 +287,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				254308501AB2809E00407101 /* BlueViewController.m in Sources */,
 				2543084A1AB2779E00407101 /* Tag.m in Sources */,
 				254308011AAFF2DF00407101 /* ConfigurableCoreDataStack.m in Sources */,
 				254307FB1AAFF20000407101 /* SubclassableCoreDataStack.m in Sources */,
 				254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */,
+				254308611AB7F0B000407101 /* EditItemController.m in Sources */,
 				254307F21AAE8F1700407101 /* Item.m in Sources */,
 				254307F81AAFF19A00407101 /* CoreDataChangeObserver.m in Sources */,
-				254308581AB5465900407101 /* ItemDetailController.m in Sources */,
 				254307D31AAE8E7F00407101 /* ViewController.m in Sources */,
 				2543083B1AB1253F00407101 /* InventoryModel.xcdatamodeld in Sources */,
 				254307D01AAE8E7F00407101 /* main.m in Sources */,
