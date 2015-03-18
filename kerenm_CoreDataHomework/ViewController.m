@@ -59,6 +59,7 @@
         Item *item = ((Item *)[_allItems objectAtIndex:rowIndex]);
         ((EditItemController *)vc).item = item;
         ((EditItemController *)vc).appIdentifier = _coreDataStackConfig.appIdentifier;
+        ((EditItemController *)vc).parentVC = self;
         //[self presentViewControllerAsSheet:vc];
         [self presentViewControllerAsModalWindow:vc];
     }
