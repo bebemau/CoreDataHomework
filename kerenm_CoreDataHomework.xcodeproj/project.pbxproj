@@ -13,7 +13,6 @@
 		254307D51AAE8E7F00407101 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254307D41AAE8E7F00407101 /* Images.xcassets */; };
 		254307D81AAE8E7F00407101 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254307D61AAE8E7F00407101 /* Main.storyboard */; };
 		254307E41AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307E31AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.m */; };
-		254307F21AAE8F1700407101 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307F11AAE8F1700407101 /* Item.m */; };
 		254307F81AAFF19A00407101 /* CoreDataChangeObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307F71AAFF19A00407101 /* CoreDataChangeObserver.m */; };
 		254307FB1AAFF20000407101 /* SubclassableCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307FA1AAFF20000407101 /* SubclassableCoreDataStack.m */; };
 		254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 254307FD1AAFF23600407101 /* ConfigurationCreator.m */; };
@@ -23,6 +22,7 @@
 		2543084A1AB2779E00407101 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308491AB2779E00407101 /* Tag.m */; };
 		2543084D1AB277C400407101 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543084C1AB277C400407101 /* Image.m */; };
 		254308611AB7F0B000407101 /* EditItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308601AB7F0B000407101 /* EditItemController.m */; };
+		254308641AB92E3E00407101 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 254308631AB92E3E00407101 /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +48,6 @@
 		254307DD1AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kerenm_CoreDataHomeworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		254307E21AAE8E7F00407101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		254307E31AAE8E7F00407101 /* kerenm_CoreDataHomeworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kerenm_CoreDataHomeworkTests.m; sourceTree = "<group>"; };
-		254307F01AAE8F1700407101 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		254307F11AAE8F1700407101 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		254307F61AAFF19A00407101 /* CoreDataChangeObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataChangeObserver.h; sourceTree = "<group>"; };
 		254307F71AAFF19A00407101 /* CoreDataChangeObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataChangeObserver.m; sourceTree = "<group>"; };
 		254307F91AAFF20000407101 /* SubclassableCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubclassableCoreDataStack.h; sourceTree = "<group>"; };
@@ -67,6 +65,8 @@
 		2543084C1AB277C400407101 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		2543085F1AB7F0B000407101 /* EditItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditItemController.h; path = ../EditItemController.h; sourceTree = "<group>"; };
 		254308601AB7F0B000407101 /* EditItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditItemController.m; path = ../EditItemController.m; sourceTree = "<group>"; };
+		254308621AB92E3E00407101 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = ../Item.h; sourceTree = "<group>"; };
+		254308631AB92E3E00407101 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = ../Item.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				254308391AB1253F00407101 /* InventoryModel.xcdatamodeld */,
-				254307F01AAE8F1700407101 /* Item.h */,
-				254307F11AAE8F1700407101 /* Item.m */,
+				254308621AB92E3E00407101 /* Item.h */,
+				254308631AB92E3E00407101 /* Item.m */,
 				2543084B1AB277C400407101 /* Image.h */,
 				2543084C1AB277C400407101 /* Image.m */,
 				254308481AB2779E00407101 /* Tag.h */,
@@ -287,12 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254308641AB92E3E00407101 /* Item.m in Sources */,
 				2543084A1AB2779E00407101 /* Tag.m in Sources */,
 				254308011AAFF2DF00407101 /* ConfigurableCoreDataStack.m in Sources */,
 				254307FB1AAFF20000407101 /* SubclassableCoreDataStack.m in Sources */,
 				254307FE1AAFF23600407101 /* ConfigurationCreator.m in Sources */,
 				254308611AB7F0B000407101 /* EditItemController.m in Sources */,
-				254307F21AAE8F1700407101 /* Item.m in Sources */,
 				254307F81AAFF19A00407101 /* CoreDataChangeObserver.m in Sources */,
 				254307D31AAE8E7F00407101 /* ViewController.m in Sources */,
 				2543083B1AB1253F00407101 /* InventoryModel.xcdatamodeld in Sources */,

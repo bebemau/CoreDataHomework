@@ -58,7 +58,7 @@
         NSViewController *vc = [sb instantiateControllerWithIdentifier:@"EditItemControllerID"];
         Item *item = ((Item *)[_allItems objectAtIndex:rowIndex]);
         ((EditItemController *)vc).item = item;
-        ((EditItemController *)vc).moc = _moc;
+        ((EditItemController *)vc).appIdentifier = _coreDataStackConfig.appIdentifier;
         //[self presentViewControllerAsSheet:vc];
         [self presentViewControllerAsModalWindow:vc];
     }
@@ -86,9 +86,9 @@
     else if ([[tableColumn identifier] isEqualToString:@"datePostedColumn"]){
         cell = [tableView makeViewWithIdentifier:@"tableCellDatePosted" owner:nil];
         cell.textField.stringValue=@(rowIndex).stringValue;
-        NSString *dateString = [NSDateFormatter localizedStringFromDate: i.datePosted
-                                                              dateStyle:NSDateFormatterShortStyle
-                                                              timeStyle:NSDateFormatterFullStyle];
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"MM/dd/yyyy"];
+        NSString *dateString = [df stringFromDate:i.datePosted];
         cell.textField.stringValue = dateString;
     }
 
@@ -104,10 +104,10 @@
     NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     NSViewController *vc = [sb instantiateControllerWithIdentifier:@"EditItemControllerID"];
     //[self presentViewControllerAsModalWindow:vc];
-    [self presentViewControllerAsSheet:vc];
     ((EditItemController *)vc).moc = _moc;
     ((EditItemController *)vc).appIdentifier = _coreDataStackConfig.appIdentifier;
     ((EditItemController *)vc).parentVC = self;
+    [self presentViewControllerAsSheet:vc];
 }
 
 @end
