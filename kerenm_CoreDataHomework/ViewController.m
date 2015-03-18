@@ -56,6 +56,9 @@
     if(rowIndex != -1){
         NSStoryboard *sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
         NSViewController *vc = [sb instantiateControllerWithIdentifier:@"EditItemControllerID"];
+        Item *item = ((Item *)[_allItems objectAtIndex:rowIndex]);
+        ((EditItemController *)vc).item = item;
+        ((EditItemController *)vc).moc = _moc;
         //[self presentViewControllerAsSheet:vc];
         [self presentViewControllerAsModalWindow:vc];
     }
@@ -65,8 +68,7 @@
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName:@"Item"];
     NSError *fetchError = nil;
     _allItems = [_moc executeFetchRequest:fr error:&fetchError];
-    NSLog(@"%@", _allItems);
-    
+    //NSLog(@"%@", _allItems);
     [self.tblItems reloadData];
 }
 

@@ -13,12 +13,12 @@
 
 @interface EditItemController ()
 @property (weak) IBOutlet NSButton *btnAdd;
-@property (weak) IBOutlet NSTextField *txtItemDescription;
-@property (weak) IBOutlet NSTextField *txtTag;
-@property (weak) IBOutlet NSTextField *txtLocation;
-@property (weak) IBOutlet NSTextField *txtImage1;
-@property (weak) IBOutlet NSTextField *txtImage3;
-@property (weak) IBOutlet NSTextField *txtImage2;
+//@property (weak) IBOutlet NSTextField *txtItemDescription;
+//@property (weak) IBOutlet NSTextField *txtTag;
+//@property (weak) IBOutlet NSTextField *txtLocation;
+//@property (weak) IBOutlet NSTextField *txtImage1;
+//@property (weak) IBOutlet NSTextField *txtImage3;
+//@property (weak) IBOutlet NSTextField *txtImage2;
 @property NSURL *imageDirectory;
 @end
 
@@ -33,7 +33,6 @@
     NSURL *applicationUrl = [NSURL fileURLWithPath: applicationSupportDirectory isDirectory: YES];
     NSString *imagePath = [NSString stringWithFormat:@"%@/%@", _appIdentifier, @"images"];
     _imageDirectory = [applicationUrl URLByAppendingPathComponent:imagePath];
-    
     NSError * error = nil;
     [[NSFileManager defaultManager] createDirectoryAtPath:[_imageDirectory path]
                               withIntermediateDirectories:YES
@@ -41,6 +40,13 @@
                                                     error:&error];
     if (error != nil) {
         NSLog(@"error creating image directory: %@", error);
+    }
+    
+    //populate fields if model is populated
+    if(_item != nil){
+        self.txtItemDescription.stringValue = _item.title;
+        //self.txtImage1.stringValue = item.images[0].;
+        
     }
 
 }
@@ -102,11 +108,11 @@
         [[NSFileManager defaultManager] copyItemAtURL: [NSURL fileURLWithPath:sourcePath isDirectory:NO]
                                                 toURL:destinationPath
                                                 error: &err];
+        Image *image = [Image createInMoc: _moc];
+        image.imageUrl = [destinationPath path];
+        image.imageToItem  =item;
     }
     
-    Image *image = [Image createInMoc: _moc];
-    image.imageUrl = [destinationPath path];
-    image.imageToItem  =item;
 }
 
 @end
