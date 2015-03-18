@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ConfigurableCoreDataStack.h"
 
+
 @interface ViewController : NSViewController<
 NSTableViewDataSource,
 NSTableViewDelegate

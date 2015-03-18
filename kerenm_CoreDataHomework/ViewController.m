@@ -60,8 +60,8 @@
         ((EditItemController *)vc).item = item;
         ((EditItemController *)vc).appIdentifier = _coreDataStackConfig.appIdentifier;
         ((EditItemController *)vc).parentVC = self;
-        //[self presentViewControllerAsSheet:vc];
-        [self presentViewControllerAsModalWindow:vc];
+        [self presentViewControllerAsSheet:vc];
+        //[self presentViewControllerAsModalWindow:vc];
     }
 }
 

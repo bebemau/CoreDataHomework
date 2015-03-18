@@ -10,6 +10,7 @@
 #import "Item.h"
 #import "Image.h"
 #import "ViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface EditItemController ()
 @property (weak) IBOutlet NSButton *btnAdd;
@@ -65,6 +66,9 @@
     {
         _item = [Item createInMoc: _moc];
     }
+    
+    [self getCoordinates];
+    [self getCity];
 
 }
 - (IBAction)btnBrowse_clicked:(id)sender {
@@ -126,6 +130,40 @@
         image.imageToItem  =item;
     }
     
+}
+
+-(void)getCoordinates{
+    CLGeocoder* gc = [[CLGeocoder alloc] init];
+    [gc geocodeAddressString:@"seattle" completionHandler:^(NSArray *placemarks, NSError *error)
+    {
+        if ([placemarks count]>0)
+        {
+            // get the first one
+            CLPlacemark* mark = (CLPlacemark*)[placemarks objectAtIndex:0];
+            double lat = mark.location.coordinate.latitude;
+            double lng = mark.location.coordinate.longitude;
+            NSString *longString = [[NSNumber numberWithDouble:lng] stringValue];
+            self.txtLocation.stringValue = [[[[NSNumber numberWithDouble:lat] stringValue] stringByAppendingString:@";"] stringByAppendingString:longString];
+        }
+    }];
+}
+
+-(void)getCity{
+    CLGeocoder* gc = [[CLGeocoder alloc] init];
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:47.6062095 longitude:-122.3320708];
+    [gc reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks,
+                                                             NSError *error) {
+        for (CLPlacemark * placemark in placemarks) {
+            NSString *locality = [placemark locality];
+            NSString * name =    [placemark name];
+            NSString  *country  = [placemark country];
+            NSLog(@"placemark: %@", [placemark name]);
+            
+//            m_locality = [placemark locality];
+//            m_name =    [placemark name];
+//            m_country  = [placemark country];
+        }
+    }];
 }
 
 @end
