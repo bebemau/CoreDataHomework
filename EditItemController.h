@@ -18,6 +18,8 @@
 @property (weak) IBOutlet NSTextField *txtImage1;
 @property (weak) IBOutlet NSTextField *txtImage3;
 @property (weak) IBOutlet NSTextField *txtImage2;
+@property (weak) IBOutlet NSImageView *imageView1;
+@property (weak) IBOutlet NSImageView *imageView2;
 @property NSManagedObjectContext *moc;
 @property NSString *appIdentifier;
 @property ViewController *parentVC;

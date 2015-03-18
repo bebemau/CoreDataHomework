@@ -51,10 +51,14 @@
         if(imageArray.count > 0){
             Image *image = [imageArray objectAtIndex:0];
             self.txtImage1.stringValue= image.imageUrl;
+            //NSURL *imageUrl = [NSURL fileURLWithPath:image.imageUrl];
+            NSImage * aImage = [[NSImage alloc] initWithContentsOfFile:image.imageUrl];
+            [self.imageView1 setImage:aImage];
             image = [imageArray objectAtIndex:1];
             self.txtImage2.stringValue= image.imageUrl;
-            image = [imageArray objectAtIndex:2];
-            self.txtImage3.stringValue= image.imageUrl;
+            aImage = [[NSImage alloc] initWithContentsOfFile:image.imageUrl];
+            [self.imageView2 setImage:aImage];
+
         }
     }
     else
@@ -75,19 +79,19 @@
         NSLog(@"user got: %@", op.URLs);
         if([[sender identifier] isEqualToString: @"image1"]){
             self.txtImage1.stringValue = [op.URL path];
+            NSImage * aImage = [[NSImage alloc] initWithContentsOfFile:[op.URL path]];
+            [self.imageView1 setImage:aImage];
         }
         else if([[sender identifier] isEqualToString: @"image2"]){
             self.txtImage2.stringValue = [op.URL path];
-        }
-        else if([[sender identifier] isEqualToString: @"image3"]){
-            self.txtImage3.stringValue = [op.URL path];
+            NSImage * aImage = [[NSImage alloc] initWithContentsOfFile:[op.URL path]];
+            [self.imageView2 setImage:aImage];
         }
         
     }];
 }
 
 - (IBAction)btnSubmit_clicked:(id)sender {
-//    _item = [Item createInMoc: _moc];
     _item.title  = self.txtItemDescription.stringValue;
     _item.uuid = [[NSUUID UUID] UUIDString];
     _item.datePosted  = [NSDate date];
@@ -95,7 +99,6 @@
     //save image
     [self saveImage:self.txtImage1.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_1"]];
     [self saveImage:self.txtImage2.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_2"]];
-    [self saveImage:self.txtImage3.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_3"]];
     
     NSError *saveError = nil;
     BOOL success = [_moc save:&saveError];
