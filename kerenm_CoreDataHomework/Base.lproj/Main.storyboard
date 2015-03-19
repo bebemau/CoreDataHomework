@@ -735,6 +735,9 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="nextKeyView" destination="xsM-m7-g0V" id="1qf-Qf-5ga"/>
+                                </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cbl-5p-hsr">
                                 <rect key="frame" x="190" y="330" width="306" height="22"/>
@@ -752,6 +755,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="btnBrowse_clicked:" target="NVq-XW-jjz" id="qE0-51-NFD"/>
+                                    <outlet property="nextKeyView" destination="Iep-if-2QE" id="k0G-dT-3U3"/>
                                 </connections>
                             </button>
                             <button identifier="image2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iep-if-2QE">
@@ -762,6 +766,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="btnBrowse_clicked:" target="NVq-XW-jjz" id="eF0-Sr-xia"/>
+                                    <outlet property="nextKeyView" destination="l1K-zZ-BuX" id="hKS-3k-KbM"/>
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xED-R3-oHk">
@@ -791,8 +796,16 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zvN-c2-G5A">
-                                <rect key="frame" x="216" y="15" width="307" height="28"/>
+                                <rect key="frame" x="307" y="86" width="307" height="28"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="TSZ-W6-AHX">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V3u-Br-zEe">
+                                <rect key="frame" x="307" y="132" width="244" height="23"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="UDA-x7-JVD">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -806,16 +819,22 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="btnMap:" target="NVq-XW-jjz" id="v96-44-Rg7"/>
+                                    <outlet property="nextKeyView" destination="gfY-9i-nmg" id="aJJ-gt-cnP"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V3u-Br-zEe">
-                                <rect key="frame" x="216" y="42" width="244" height="23"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="UDA-x7-JVD">
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQf-hK-Slf">
+                                <rect key="frame" x="178" y="25" width="158" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5dK-Yb-YqS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="btnCancel_clicked:" target="NVq-XW-jjz" id="X1n-sW-orZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>

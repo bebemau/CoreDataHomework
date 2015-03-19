@@ -62,11 +62,12 @@
             //NSURL *imageUrl = [NSURL fileURLWithPath:image.imageUrl];
             NSImage * aImage = [[NSImage alloc] initWithContentsOfFile:image.imageUrl];
             [self.imageView1 setImage:aImage];
-            image = [imageArray objectAtIndex:1];
-            self.txtImage2.stringValue= image.imageUrl;
-            aImage = [[NSImage alloc] initWithContentsOfFile:image.imageUrl];
-            [self.imageView2 setImage:aImage];
-
+            if(imageArray.count>1){
+                image = [imageArray objectAtIndex:1];
+                self.txtImage2.stringValue= image.imageUrl;
+                aImage = [[NSImage alloc] initWithContentsOfFile:image.imageUrl];
+                [self.imageView2 setImage:aImage];
+            }
         }
         
         //location
@@ -241,5 +242,8 @@
     [self getCoordinates:NO];
 }
 
+- (IBAction)btnCancel_clicked:(id)sender {
+    [self dismissController:self];
+}
 
 @end
