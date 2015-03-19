@@ -12,6 +12,7 @@
 #import "ViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "Location.h"
+#import "Tag.h"
 
 @interface EditItemController ()
 @property (weak) IBOutlet NSButton *btnAdd;
@@ -67,10 +68,17 @@
         }
         
         //location
-        Location *location = [_item itemToLocation];
-        double dblLatitude = [location.latitude doubleValue];
-        double dblLongitude = [location.longtitude doubleValue];
-        [self getAddress:dblLatitude withCoordinates:dblLongitude];
+        if(_item.itemToLocation != nil){
+            Location *location = [_item itemToLocation];
+            double dblLatitude = [location.latitude doubleValue];
+            double dblLongitude = [location.longtitude doubleValue];
+            [self getAddress:dblLatitude withCoordinates:dblLongitude];
+        }
+        
+        //tag
+        if(_item.itemToTag != nil){
+            self.txtTag.stringValue = [[self.item.itemToTag.allObjects valueForKeyPath:@"tagName"] componentsJoinedByString:@", "];
+        }
     }
     else
     {
@@ -105,7 +113,12 @@
 }
 
 - (IBAction)btnSubmit_clicked:(id)sender {
-    [self getCoordinates];
+    if (![self.txtLocation.stringValue isEqualToString:@""]){
+        [self getCoordinates];
+    }
+    else{
+        [self SaveToCoreDataCallBack:0 fromGetCoordinates:0];
+    }
 }
 
 -(void)SaveToCoreDataCallBack: (double)latitude fromGetCoordinates: (double)longitude{
@@ -117,13 +130,27 @@
     [self saveImage:self.txtImage1.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_1"]];
     [self saveImage:self.txtImage2.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_2"]];
     
-    //save location
-    Location *location = [Location createInMoc: _moc];
-    NSNumber *number = [NSNumber numberWithDouble:latitude];
-    location.latitude = [number stringValue];
-    NSNumber *longitudeNumber = [NSNumber numberWithDouble:longitude];
-    location.longtitude = [longitudeNumber stringValue];
-    location.locationToItem = _item;
+    if(![self.txtLocation.stringValue isEqualToString:@""]){
+        //save location
+        Location *location = [Location createInMoc: _moc];
+        NSNumber *number = [NSNumber numberWithDouble:latitude];
+        location.latitude = [number stringValue];
+        NSNumber *longitudeNumber = [NSNumber numberWithDouble:longitude];
+        location.longtitude = [longitudeNumber stringValue];
+        location.locationToItem = _item;
+    }
+    
+    //save tags
+    NSArray *tags = [self.txtTag.stringValue componentsSeparatedByString:@","];
+    NSMutableSet *mutableTags = [self.item mutableSetValueForKeyPath:@"itemToTag"];
+    [mutableTags removeAllObjects];
+    for (NSString *t in tags) {
+        NSString *trimmed = [t stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (trimmed.length > 0) {
+            Tag *t = [Tag findOrCreateWithTitle:trimmed inMoc:_moc];
+            [mutableTags addObject:t];
+        }
+    }
     
     //save
     NSError *saveError = nil;
@@ -177,22 +204,21 @@
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     
     [gc reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
-        NSString *locality = @"";
+        NSString *city = @"";
         NSString *postalCode =    @"";
-        NSString *subThoroughfare = @"";
+        NSString *streetNumber = @"";
         NSString *streetAddress = @"";
         NSString *state = @"";
         
         for (CLPlacemark * placemark in placemarks) {
             streetAddress = [placemark thoroughfare];
-            locality = [placemark locality]; //seattle
+            city = [placemark locality];
             postalCode =    [placemark postalCode];
-            subThoroughfare  = [placemark subThoroughfare];
+            streetNumber  = [placemark subThoroughfare];
             state = [placemark administrativeArea];
-            NSLog(@"placemark: %@", [placemark name]);
         }
         
-        self.txtLocation.stringValue = [NSString stringWithFormat:@"%@/%@/%@/%@/%@", subThoroughfare, streetAddress, locality, state, postalCode ];
+        self.txtLocation.stringValue = [NSString stringWithFormat:@"%@ %@, %@, %@%@", streetNumber, streetAddress, city, state, postalCode ];
     }];
 }
 

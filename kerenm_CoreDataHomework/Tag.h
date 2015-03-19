@@ -16,6 +16,6 @@
 @property (nonatomic, retain) NSString * tagName;
 @property (nonatomic, retain) Item *tagToItem;
 
-+(instancetype)createInMoc:(NSManagedObjectContext*)moc;
++(instancetype)findOrCreateWithTitle:(NSString*)title inMoc:(NSManagedObjectContext*)moc;
 
 @end

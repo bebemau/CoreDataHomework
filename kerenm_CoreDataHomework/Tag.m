@@ -15,9 +15,18 @@
 @dynamic tagName;
 @dynamic tagToItem;
 
-+(instancetype)createInMoc:(NSManagedObjectContext*)moc{
++(instancetype)findOrCreateWithTitle:(NSString*)title inMoc:(NSManagedObjectContext*)moc
+{
+    NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"tagName == %@", title];
+    if ([moc countForFetchRequest:fr error:nil] == 1) {
+        return [[moc executeFetchRequest:fr error:nil] firstObject];
+    }
+    
     Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:moc];
+    tag.tagName = title;
     return tag;
 }
+
 
 @end
