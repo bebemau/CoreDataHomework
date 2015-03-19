@@ -130,6 +130,8 @@
     _item.datePosted  = [NSDate date];
     
     //save image
+    NSMutableSet *mutableImages = [_item mutableSetValueForKeyPath:@"itemToImage"];
+    [mutableImages removeAllObjects];
     [self saveImage:self.txtImage1.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_1"]];
     [self saveImage:self.txtImage2.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_2"]];
     
