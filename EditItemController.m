@@ -11,6 +11,7 @@
 #import "Image.h"
 #import "ViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Location.h"
 
 @interface EditItemController ()
 @property (weak) IBOutlet NSButton *btnAdd;
@@ -20,6 +21,7 @@
 //@property (weak) IBOutlet NSTextField *txtImage1;
 //@property (weak) IBOutlet NSTextField *txtImage3;
 //@property (weak) IBOutlet NSTextField *txtImage2;
+@property (weak) IBOutlet NSTextField *lblCoordinates;
 @property NSURL *imageDirectory;
 @end
 
@@ -47,6 +49,8 @@
     if(_item != nil){
         self.moc = _item.managedObjectContext;
         self.txtItemDescription.stringValue = _item.title;
+        
+        //image
         NSSet *set=[_item itemToImage];
         NSArray *imageArray = [set allObjects];
         if(imageArray.count > 0){
@@ -61,14 +65,19 @@
             [self.imageView2 setImage:aImage];
 
         }
+        
+        //location
+        Location *location = [_item itemToLocation];
+        double dblLatitude = [location.latitude doubleValue];
+        double dblLongitude = [location.longtitude doubleValue];
+        [self getAddress:dblLatitude withCoordinates:dblLongitude];
     }
     else
     {
         _item = [Item createInMoc: _moc];
     }
-    
-    [self getCoordinates];
-    [self getCity];
+
+    [self.lblCoordinates setHidden:NO];
 
 }
 - (IBAction)btnBrowse_clicked:(id)sender {
@@ -96,6 +105,10 @@
 }
 
 - (IBAction)btnSubmit_clicked:(id)sender {
+    [self getCoordinates];
+}
+
+-(void)SaveToCoreDataCallBack: (double)latitude fromGetCoordinates: (double)longitude{
     _item.title  = self.txtItemDescription.stringValue;
     _item.uuid = [[NSUUID UUID] UUIDString];
     _item.datePosted  = [NSDate date];
@@ -104,6 +117,15 @@
     [self saveImage:self.txtImage1.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_1"]];
     [self saveImage:self.txtImage2.stringValue parentItem:_item imageFileName: [NSString stringWithFormat:@"%@%@", _item.uuid, @"_2"]];
     
+    //save location
+    Location *location = [Location createInMoc: _moc];
+    NSNumber *number = [NSNumber numberWithDouble:latitude];
+    location.latitude = [number stringValue];
+    NSNumber *longitudeNumber = [NSNumber numberWithDouble:longitude];
+    location.longtitude = [longitudeNumber stringValue];
+    location.locationToItem = _item;
+    
+    //save
     NSError *saveError = nil;
     BOOL success = [_moc save:&saveError];
     if(!success){
@@ -134,7 +156,7 @@
 
 -(void)getCoordinates{
     CLGeocoder* gc = [[CLGeocoder alloc] init];
-    [gc geocodeAddressString:@"seattle" completionHandler:^(NSArray *placemarks, NSError *error)
+    [gc geocodeAddressString: self.txtLocation.stringValue completionHandler:^(NSArray *placemarks, NSError *error)
     {
         if ([placemarks count]>0)
         {
@@ -142,27 +164,35 @@
             CLPlacemark* mark = (CLPlacemark*)[placemarks objectAtIndex:0];
             double lat = mark.location.coordinate.latitude;
             double lng = mark.location.coordinate.longitude;
-            NSString *longString = [[NSNumber numberWithDouble:lng] stringValue];
-            self.txtLocation.stringValue = [[[[NSNumber numberWithDouble:lat] stringValue] stringByAppendingString:@";"] stringByAppendingString:longString];
+            //NSString *longString = [[NSNumber numberWithDouble:lng] stringValue];
+            //self.lblCoordinates.stringValue = [[[[NSNumber numberWithDouble:lat] stringValue] stringByAppendingString:@";"] stringByAppendingString:longString];
+            
+            [self SaveToCoreDataCallBack:lat fromGetCoordinates:lng];
         }
     }];
 }
 
--(void)getCity{
+-(void)getAddress: (double)latitude withCoordinates: (double)longitude{
     CLGeocoder* gc = [[CLGeocoder alloc] init];
-    CLLocation *loc = [[CLLocation alloc] initWithLatitude:47.6062095 longitude:-122.3320708];
-    [gc reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks,
-                                                             NSError *error) {
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    
+    [gc reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSString *locality = @"";
+        NSString *postalCode =    @"";
+        NSString *subThoroughfare = @"";
+        NSString *streetAddress = @"";
+        NSString *state = @"";
+        
         for (CLPlacemark * placemark in placemarks) {
-            NSString *locality = [placemark locality];
-            NSString * name =    [placemark name];
-            NSString  *country  = [placemark country];
+            streetAddress = [placemark thoroughfare];
+            locality = [placemark locality]; //seattle
+            postalCode =    [placemark postalCode];
+            subThoroughfare  = [placemark subThoroughfare];
+            state = [placemark administrativeArea];
             NSLog(@"placemark: %@", [placemark name]);
-            
-//            m_locality = [placemark locality];
-//            m_name =    [placemark name];
-//            m_country  = [placemark country];
         }
+        
+        self.txtLocation.stringValue = [NSString stringWithFormat:@"%@/%@/%@/%@/%@", subThoroughfare, streetAddress, locality, state, postalCode ];
     }];
 }
 

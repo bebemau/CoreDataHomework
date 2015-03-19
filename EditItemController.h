@@ -24,5 +24,4 @@
 @property NSString *appIdentifier;
 @property ViewController *parentVC;
 @property Item *item;
-
 @end
