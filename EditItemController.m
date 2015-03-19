@@ -87,8 +87,8 @@
         _item = [Item createInMoc: _moc];
     }
 
-    [self.lblLongtitude setHidden:NO];
-    [self.lblLatitude setHidden:NO];
+    [self.lblLongtitude setHidden:YES];
+    [self.lblLatitude setHidden:YES];
 }
 - (IBAction)btnBrowse_clicked:(id)sender {
     NSOpenPanel *op = [NSOpenPanel openPanel];
