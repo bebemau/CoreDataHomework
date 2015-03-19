@@ -22,8 +22,10 @@
 //@property (weak) IBOutlet NSTextField *txtImage1;
 //@property (weak) IBOutlet NSTextField *txtImage3;
 //@property (weak) IBOutlet NSTextField *txtImage2;
-@property (weak) IBOutlet NSTextField *lblCoordinates;
 @property NSURL *imageDirectory;
+@property (weak) IBOutlet NSTextField *lblLatitude;
+@property (weak) IBOutlet NSTextField *lblLongtitude;
+
 @end
 
 @implementation EditItemController
@@ -85,8 +87,8 @@
         _item = [Item createInMoc: _moc];
     }
 
-    [self.lblCoordinates setHidden:NO];
-
+    [self.lblLongtitude setHidden:NO];
+    [self.lblLatitude setHidden:NO];
 }
 - (IBAction)btnBrowse_clicked:(id)sender {
     NSOpenPanel *op = [NSOpenPanel openPanel];
@@ -114,7 +116,7 @@
 
 - (IBAction)btnSubmit_clicked:(id)sender {
     if (![self.txtLocation.stringValue isEqualToString:@""]){
-        [self getCoordinates];
+        [self getCoordinates:YES];
     }
     else{
         [self SaveToCoreDataCallBack:0 fromGetCoordinates:0];
@@ -181,7 +183,7 @@
     
 }
 
--(void)getCoordinates{
+-(void)getCoordinates: (BOOL)saveData{
     CLGeocoder* gc = [[CLGeocoder alloc] init];
     [gc geocodeAddressString: self.txtLocation.stringValue completionHandler:^(NSArray *placemarks, NSError *error)
     {
@@ -193,8 +195,18 @@
             double lng = mark.location.coordinate.longitude;
             //NSString *longString = [[NSNumber numberWithDouble:lng] stringValue];
             //self.lblCoordinates.stringValue = [[[[NSNumber numberWithDouble:lat] stringValue] stringByAppendingString:@";"] stringByAppendingString:longString];
+            NSNumber *latitudeNumber = [NSNumber numberWithDouble:lat];
+            NSNumber *longitudeNumber = [NSNumber numberWithDouble:lng];
+            self.lblLatitude.stringValue = [latitudeNumber stringValue];
+            self.lblLongtitude.stringValue = [longitudeNumber stringValue];
             
-            [self SaveToCoreDataCallBack:lat fromGetCoordinates:lng];
+            if(saveData){
+                [self SaveToCoreDataCallBack:lat fromGetCoordinates:lng];
+            }
+            else{
+                NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?q=%@,%@", self.lblLatitude.stringValue, self.lblLongtitude.stringValue];
+                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+            }
         }
     }];
 }
@@ -217,9 +229,17 @@
             streetNumber  = [placemark subThoroughfare];
             state = [placemark administrativeArea];
         }
-        
+        NSNumber *latitudeNumber = [NSNumber numberWithDouble:latitude];
+        NSNumber *longitudeNumber = [NSNumber numberWithDouble:longitude];
+        self.lblLatitude.stringValue = [latitudeNumber stringValue];
+        self.lblLongtitude.stringValue = [longitudeNumber stringValue];
         self.txtLocation.stringValue = [NSString stringWithFormat:@"%@ %@, %@, %@%@", streetNumber, streetAddress, city, state, postalCode ];
     }];
 }
+
+- (IBAction)btnMap:(id)sender {
+    [self getCoordinates:NO];
+}
+
 
 @end
